@@ -1,25 +1,29 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { Container, Header, List, ListItem, Rating } from "semantic-ui-react"
+import api from "../api"
 
 export default function RecipeList({}) {
     const [recipes, setRecipes] = useState([])
 
-    const url = 'http://127.0.0.1:8000/'
-
     useEffect(() => {
-        axios.get(url + 'recipes').then((res) => {
+        axios.get(api + 'recipes').then((res) => {
             setRecipes(res.data)
         })
     }, [])
 
     return (
-        <ul>
+        <Container>
+        <Header as='h1'>Recipes</Header>
+        <List>
             {recipes.map(r =>
-                <li>
+                <ListItem>
                     <Link to={'recipe/' + r.id}>{r.title}</Link>
-                </li>
+                    <Rating icon='star' defaultRating={r.rating_avg} maxRating={5} disabled />
+                </ListItem>
             )}
-        </ul>
+        </List>
+        </Container>
     )
 }

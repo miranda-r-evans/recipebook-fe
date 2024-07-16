@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
 import { Route, Routes } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import Recipe from './components/Recipe';
